@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using MongoDB.Bson.Serialization;
+using ShopifyIMS.Dal;
+using ShopifyIMS.Models;
+using ShopifyIMS.Services;
 
 namespace ShopifyIMS
 {
@@ -26,7 +24,21 @@ namespace ShopifyIMS
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.Configure<InventoryManagementSystemDBContext>(options =>
+            {
+                options.ConnectionString = Environment.GetEnvironmentVariable("ShopifyIMSDatabaseConnString");
+                options.DatabaseName = Configuration.GetSection("InventoryDatabase:DatabaseName").Value;
+                options.CollectionName = Configuration.GetSection("InventoryDatabase:CollectionName").Value;
+            });
+
+            BsonClassMap.RegisterClassMap<InventoryItem>(cm =>
+               cm.AutoMap()
+           );
+
+            services.AddRazorPages();
+            services.AddServerSideBlazor();
+            services.AddSingleton<InventoryRepository>();
+            services.AddSingleton<InventoryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

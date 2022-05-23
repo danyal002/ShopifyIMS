@@ -1,0 +1,40 @@
+﻿<Properties StartupConfiguration="{2E380828-6102-47F0-AB0D-DCDC9FE85195}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ShopifyIMS/Startup.cs">
+    <Files>
+      <File FileName="ShopifyIMS/Startup.cs" Line="47" Column="44" />
+      <File FileName="ShopifyIMS/Controllers/InventoryController.cs" Line="21" Column="1" />
+      <File FileName="ShopifyIMS/InventoryService.cs" Line="41" Column="1" />
+      <File FileName="ShopifyIMS/appsettings.json" Line="16" Column="1" />
+      <File FileName="ShopifyIMS/Properties/launchSettings.json" Line="9" Column="6" />
+      <File FileName="ShopifyIMS/Dal/InventoryRepository.cs" Line="38" Column="1" />
+      <File FileName="ShopifyIMS/Models/InventoryItem.cs" Line="12" Column="1" />
+      <File FileName="ShopifyIMS/Program.cs" Line="16" Column="1" />
+      <File FileName="ShopifyIMS/Models/Context.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ShopifyIMS" expanded="True">
+            <Node name="ShopifyIMS" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Dal" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Startup.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.ShopifyIMS PreferredExecutionTarget="/Applications/Firefox.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

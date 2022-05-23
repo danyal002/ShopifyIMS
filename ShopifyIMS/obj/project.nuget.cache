@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "jRGcckEUhcqy4g/7Ji0VnBFg9uCAtwntC1fCtA8sDBAsKp5htG71w8BR49vlbEQGsu1IvrTOdmhc+PMHnLr4ng==",
+  "success": true,
+  "projectFilePath": "/Users/danyal/DotNetProjects/ShopifyIMS/ShopifyIMS/ShopifyIMS.csproj",
+  "expectedPackageFiles": [
+    "/Users/danyal/.nuget/packages/dnsclient/1.6.0/dnsclient.1.6.0.nupkg.sha512",
+    "/Users/danyal/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "/Users/danyal/.nuget/packages/microsoft.win32.registry/5.0.0/microsoft.win32.registry.5.0.0.nupkg.sha512",
+    "/Users/danyal/.nuget/packages/mongodb.bson/2.15.1/mongodb.bson.2.15.1.nupkg.sha512",
+    "/Users/danyal/.nuget/packages/mongodb.driver/2.15.1/mongodb.driver.2.15.1.nupkg.sha512",
+    "/Users/danyal/.nuget/packages/mongodb.driver.core/2.15.1/mongodb.driver.core.2.15.1.nupkg.sha512",
+    "/Users/danyal/.nuget/packages/mongodb.libmongocrypt/1.3.0/mongodb.libmongocrypt.1.3.0.nupkg.sha512",
+    "/Users/danyal/.nuget/packages/sharpcompress/0.30.1/sharpcompress.0.30.1.nupkg.sha512",
+    "/Users/danyal/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
+    "/Users/danyal/.nuget/packages/system.runtime.compilerservices.unsafe/5.0.0/system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "/Users/danyal/.nuget/packages/system.security.accesscontrol/5.0.0/system.security.accesscontrol.5.0.0.nupkg.sha512",
+    "/Users/danyal/.nuget/packages/system.security.principal.windows/5.0.0/system.security.principal.windows.5.0.0.nupkg.sha512",
+    "/Users/danyal/.nuget/packages/microsoft.netcore.app.host.osx-x64/5.0.15/microsoft.netcore.app.host.osx-x64.5.0.15.nupkg.sha512"
+  ],
+  "logs": []
+}

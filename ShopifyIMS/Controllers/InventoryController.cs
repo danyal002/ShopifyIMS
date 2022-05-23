@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ShopifyIMS.Dal;
 using ShopifyIMS.Models;
 using Microsoft.AspNetCore.Mvc;
+using ShopifyIMS.Services;
 
 namespace ShopifyIMS.Controllers
 {
@@ -11,65 +11,78 @@ namespace ShopifyIMS.Controllers
     [Route("api/[controller]")]
     public class InventoryController : ControllerBase
     {
-        private readonly InventoryRepository _inventoryRepository;
+        private readonly InventoryService _service;
 
-        public InventoryController(InventoryRepository InventoryRepository) =>
-            _inventoryRepository = InventoryRepository;
-
-        [HttpGet]
-        public async Task<List<InventoryItem>> Get() =>
-            await _inventoryRepository.GetAllItemsAsync();
-
-        [HttpGet("{id:length(24)}")]
-        public async Task<ActionResult<InventoryItem>> Get(string id)
+        public InventoryController(InventoryService service)
         {
-            var InventoryItem = await _inventoryRepository.GetItemByIdAsync(id);
+            _service = service;
+        }
 
-            if (InventoryItem is null)
+
+        [HttpGet("items/all")]
+        public async Task<List<InventoryItem>> GetAllItemsAsync()
+        {
+            return await _service.GetAllItemsAsync();
+        }
+
+        [HttpGet("items/warehouse/{warehouse}")]
+        public async Task<List<InventoryItem>> GetItemsByWarehouseAsync([FromRoute] string warehouse)
+        {
+            return await _service.GetItemsByWarehouseAsync(warehouse);
+        }
+
+        [HttpGet("items/{itemId}", Name = "GetItemById")]
+        public async Task<ActionResult<InventoryItem>> GetItemByIdAsync([FromRoute] string itemId)
+        {
+            InventoryItem item = await _service.GetItemByIdAsync(itemId);
+
+            if (item is null)
             {
                 return NotFound();
             }
 
-            return InventoryItem;
+            return item;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post(InventoryItem newBook)
+        [HttpPost("items/create")]
+        public async Task<IActionResult> UpdateItemAsync([FromBody] InventoryItem item)
         {
-            await _inventoryRepository.CreateItemAsync(newBook);
+            await _service.CreateItemAsync(item);
 
-            return CreatedAtAction(nameof(Get), new { id = newBook.Id }, newBook);
+            var createdResource = item;
+            var routeValues = new { itemId = createdResource.Id };
+
+            return CreatedAtRoute("GetItemById", routeValues, createdResource);
         }
 
-        [HttpPut("{id:length(24)}")]
-        public async Task<IActionResult> Update(string id, InventoryItem updatedBook)
+        [HttpPut("items/update/{itemId}")]
+        public async Task<IActionResult> UpdateItemAsync([FromRoute] string itemId, [FromBody] InventoryItem updatedItem)
         {
-            var InventoryItem = await _inventoryRepository.GetItemByIdAsync(id);
+            var item = await _service.GetItemByIdAsync(itemId);
 
-            if (InventoryItem is null)
+            if (item is null)
             {
                 return NotFound();
             }
 
-            updatedBook.Id = InventoryItem.Id;
+            updatedItem.Id = item.Id;
 
-            await _inventoryRepository.UpdateItemAsync(id, updatedBook);
+            await _service.UpdateItemAsync(itemId, updatedItem);
 
             return NoContent();
         }
 
-        [HttpDelete("{id:length(24)}")]
-        public async Task<IActionResult> Delete(string id)
+        [HttpDelete("items/delete/{itemId}")]
+        public async Task<IActionResult> DeleteItemAsync(string itemId)
         {
-            var InventoryItem = await _inventoryRepository.GetItemByIdAsync(id);
+            var item = await _service.GetItemByIdAsync(itemId);
 
-            if (InventoryItem is null)
+            if (item is null)
             {
                 return NotFound();
             }
 
-            await _inventoryRepository.DeleteItemAsync(id);
-
+            await _service.DeleteItemAsync(itemId);
             return NoContent();
         }
     }
